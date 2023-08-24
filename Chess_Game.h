@@ -60,8 +60,7 @@ public:
     Pair getWhiteKingPlace(std::vector<Figure*> &m_figures);
     void setBlackKingPlace(std::vector<Figure*> &m_figures, Pair xy);
     void setWhiteKingPlace(std::vector<Figure*> &m_figures, Pair xy);
-    bool check_Near_King(Pair xy1, std::vector<Figure*>& m_figures);
-
+    
     bool checkAreKingsNear(Pair bkxy, Pair wkxy);
     bool checkings();
     void checkMateForBlackKing();

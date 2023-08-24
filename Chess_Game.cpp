@@ -86,24 +86,33 @@ void ChessGame::init()
 
             place.setX(x); place.setY(y);
 
-            if (x >= 0 && x < 8 && y >= 0 && y < 8)
+            try
             {
-                if (name == 'P')
-                    figure = new Pawn(color, name, place);
-                else if (name == 'R')
-                    figure = new Rook(color, name, place);
-                else if (name == 'B')
-                    figure = new Bishop(color, name, place);
-                else if (name == 'N')
-                    figure = new Knight(color, name, place);
-                else if (name == 'Q')
-                    figure = new Queen(color, name, place);
-                else if (name == 'K')
-                    figure = new King(color, name, place);
-                else int i = 0;
+                if (x >= 0 && x < 8 && y >= 0 && y < 8)
+                {
+                    if (name == 'P')
+                        figure = new Pawn(color, name, place);
+                    else if (name == 'R')
+                        figure = new Rook(color, name, place);
+                    else if (name == 'B')
+                        figure = new Bishop(color, name, place);
+                    else if (name == 'N')
+                        figure = new Knight(color, name, place);
+                    else if (name == 'Q')
+                        figure = new Queen(color, name, place);
+                    else if (name == 'K')
+                        figure = new King(color, name, place);
+                    else int i = 0;
 
-                m_figures.push_back(figure);
-                m_figures_count++;
+                    m_figures.push_back(figure);
+                    m_figures_count++;
+                }
+                else
+                    throw std::string("Figure is out of the ChessBoard");
+            }
+            catch (std::string msg)
+            {
+                std::cout << msg << std::endl;
             }
         }
 
@@ -399,18 +408,14 @@ void ChessGameCheckMate::checkMateForBlackKing(std::vector<Figure*> m_figures_t,
                 {
                     if (allLegalMovesAllFiguresT[i] == bkxy)
                     {
-                        if (!check_Near_King(allLegalMovesBlackKingT[j], m_figures_t))
-                            isCheck = true;
+                        isCheck = true;
                     }
 
                     if (allLegalMovesAllFiguresT[i] == allLegalMovesBlackKingT[j])
                     {
-                        if (!check_Near_King(allLegalMovesBlackKingT[j], m_figures_t))
-                        {
-                            allLegalMovesBlackKingT.erase(allLegalMovesBlackKingT.begin() + j);
+                        allLegalMovesBlackKingT.erase(allLegalMovesBlackKingT.begin() + j);
 
-                            count++;
-                        }
+                        count++;
                     }
                 }
             }
@@ -428,16 +433,6 @@ void ChessGameCheckMate::checkMateForBlackKing(std::vector<Figure*> m_figures_t,
         std::cout << "Black King is out of the ChessBoard" << std::endl;
 
 };
-
-bool ChessGameCheckMate::check_Near_King(Pair xy1, std::vector<Figure*>& m_figures)
-{
-    for (int i = 0; i < m_figures.size(); i++)
-    {
-        if (xy1 == m_figures[i]->getPlace())
-            return true;
-    }
-    return false;
-}
 
 void ChessGameCheckMate::checkMateForBlackKing()
 {
@@ -472,18 +467,14 @@ void ChessGameCheckMate::checkMateForBlackKing()
                 {
                     if (allLegalMovesAllFigures[i] == bkxy)
                     {
-                        if (!check_Near_King(allLegalMovesBlackKing[j], m_figures))
-                            isCheck = true;
+                       isCheck = true;
                     }
 
                     if (allLegalMovesAllFigures[i] == allLegalMovesBlackKing[j])
                     {
-                        if (!check_Near_King(allLegalMovesBlackKing[j], m_figures))
-                        {
-                            allLegalMovesBlackKing.erase(allLegalMovesBlackKing.begin() + j);
+                        allLegalMovesBlackKing.erase(allLegalMovesBlackKing.begin() + j);
 
-                            count++;
-                        }
+                        count++;    
                     }
                 }
             }

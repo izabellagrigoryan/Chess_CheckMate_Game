@@ -167,38 +167,38 @@ std::vector<Pair> King::AllLegalMoves(ChessBoard& my_board, Pair xy, Pair kingsx
 
     if ((y - 1) >= 0)
     {
-        if (my_board.isOccupied(x, y - 1))
+        //if (my_board.isOccupied(x, y - 1))
         {
             allLegalMoves.push_back(Pair(x, y - 1));
         }
-        if ((x - 1) >= 0 && my_board.isOccupied(x - 1, y - 1))
+        if ((x - 1) >= 0)// && my_board.isOccupied(x - 1, y - 1))
         {
             allLegalMoves.push_back(Pair(x - 1, y - 1));
         }
-        if ((x + 1) < 8 && my_board.isOccupied(x + 1, y))
-        {
-            allLegalMoves.push_back(Pair(x + 1, y));
-        }
-        if ((x + 1) < 8 && my_board.isOccupied(x + 1, y - 1))
+        if ((x + 1) < 8)// && my_board.isOccupied(x + 1, y - 1))
         {
             allLegalMoves.push_back(Pair(x + 1, y - 1));
         }
     }
+    if ((x + 1) < 8)// && my_board.isOccupied(x + 1, y))
+    {
+        allLegalMoves.push_back(Pair(x + 1, y));
+    }
+    if ((x - 1) >= 0)// && my_board.isOccupied(x - 1, y))
+    {
+        allLegalMoves.push_back(Pair(x - 1, y));
+    }
     if ((y + 1) < 8)
     {
-        if (my_board.isOccupied(x, y + 1))
+       // if (my_board.isOccupied(x, y + 1))
         {
             allLegalMoves.push_back(Pair(x, y + 1));
         }
-        if ((x + 1) < 8 && my_board.isOccupied(x + 1, y + 1))
+        if ((x + 1) < 8)// && my_board.isOccupied(x + 1, y + 1))
         {
             allLegalMoves.push_back(Pair(x + 1, y + 1));
         }
-        if ((x - 1) >= 0 && my_board.isOccupied(x - 1, y))
-        {
-            allLegalMoves.push_back(Pair(x - 1, y));
-        }
-        if ((x - 1) >= 0 && my_board.isOccupied(x - 1, y + 1))
+        if ((x - 1) >= 0)// && my_board.isOccupied(x - 1, y + 1))
         {
             allLegalMoves.push_back(Pair(x - 1, y + 1));
         }
